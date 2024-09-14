@@ -1,0 +1,45 @@
+package org.example;
+public class FuncionárioMeioPeriodo extends Funcionario {
+    private int horasTrabalhadas;
+    private double valorPorHora;
+
+    // Construtor
+    public FuncionárioMeioPeriodo(String nome, String CPF, double salarioBase, int horasTrabalhadas, double valorPorHora) {
+        super(nome, CPF, salarioBase);
+        this.horasTrabalhadas = horasTrabalhadas;
+        this.valorPorHora = valorPorHora;
+    }
+
+    // Getters e Setters
+    public int getHorasTrabalhadas() {
+        return horasTrabalhadas;
+    }
+
+    public void setHorasTrabalhadas(int horasTrabalhadas) {
+        this.horasTrabalhadas = horasTrabalhadas;
+    }
+
+    public double getValorPorHora() {
+        return valorPorHora;
+    }
+
+    public void setValorPorHora(double valorPorHora) {
+        this.valorPorHora = valorPorHora;
+    }
+
+    // Sobrescrita do método calcularSalario
+    @Override
+    public double calcularSalario() {
+        return horasTrabalhadas * valorPorHora;
+    }
+
+    // Sobrescrita para exibir as informações
+    @Override
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + getNome());
+        System.out.println("CPF: " + getCPF());
+        System.out.println("Horas Trabalhadas: " + horasTrabalhadas);
+        System.out.println("Valor por Hora: " + valorPorHora);
+        System.out.println("Salário Total: " + calcularSalario());
+    }
+}

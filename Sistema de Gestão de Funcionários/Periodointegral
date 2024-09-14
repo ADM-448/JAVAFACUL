@@ -1,0 +1,33 @@
+package org.example;
+class FuncionarioTempoIntegral extends Funcionario {
+    private double bonus;
+
+    // Construtor
+    public FuncionarioTempoIntegral(String nome, String CPF, double salarioBase, double bonus) {
+        super(nome, CPF, salarioBase);
+        this.bonus = bonus;
+    }
+
+    // Getter e Setter para o bônus
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
+    // Sobrescrita do método calcularSalario
+    @Override
+    public double calcularSalario() {
+        return getSalarioBase() + (getSalarioBase() * bonus / 100);
+    }
+
+    // Sobrescrita para exibir as informações
+    @Override
+    public void exibirInformacoes() {
+        super.exibirInformacoes();
+        System.out.println("Bônus: " + bonus + "%");
+        System.out.println("Salário Total com Bônus: " + calcularSalario());
+    }
+}

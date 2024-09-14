@@ -1,0 +1,21 @@
+package org.example;
+
+import java.util.ArrayList;
+
+public class SistemaGestaoFuncionarios {
+    public static void main(String[] args) {
+        // Lista de funcionários
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+
+        // Criar funcionários diferentes e adicionar à lista
+        funcionarios.add(new FuncionarioTempoIntegral("Ana Silva", "123.456.789-00", 3000, 10)); // 10% de bônus
+        funcionarios.add(new FuncionárioMeioPeriodo("Pedro Costa", "987.654.321-00", 0, 20, 50)); // 20 horas, 50 por hora
+        funcionarios.add(new Estagiário("Lucas Martins", "456.789.123-00", 0, "Universidade X", 800)); // bolsa de 800
+
+        // Exibir as informações e salários de todos os funcionários
+        for (Funcionario f : funcionarios) {
+            f.exibirInformacoes();
+            System.out.println("------------------------");
+        }
+    }
+}

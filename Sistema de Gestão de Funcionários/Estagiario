@@ -1,0 +1,45 @@
+package org.example;
+
+public class Estagiário extends Funcionario {
+    private String instituicaoDeEnsino;
+    private double bolsaAuxilio;
+
+    // Construtor
+    public Estagiário(String nome, String CPF, double salarioBase, String instituicaoDeEnsino, double bolsaAuxilio) {
+        super(nome, CPF, salarioBase);
+        this.instituicaoDeEnsino = instituicaoDeEnsino;
+        this.bolsaAuxilio = bolsaAuxilio;
+    }
+
+    // Getters e Setters
+    public String getInstituicaoDeEnsino() {
+        return instituicaoDeEnsino;
+    }
+
+    public void setInstituicaoDeEnsino(String instituicaoDeEnsino) {
+        this.instituicaoDeEnsino = instituicaoDeEnsino;
+    }
+
+    public double getBolsaAuxilio() {
+        return bolsaAuxilio;
+    }
+
+    public void setBolsaAuxilio(double bolsaAuxilio) {
+        this.bolsaAuxilio = bolsaAuxilio;
+    }
+
+    // Sobrescrita do método calcularSalario
+    @Override
+    public double calcularSalario() {
+        return bolsaAuxilio;
+    }
+
+    // Sobrescrita para exibir as informações
+    @Override
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + getNome());
+        System.out.println("CPF: " + getCPF());
+        System.out.println("Instituição de Ensino: " + instituicaoDeEnsino);
+        System.out.println("Bolsa Auxílio: " + bolsaAuxilio);
+    }
+}

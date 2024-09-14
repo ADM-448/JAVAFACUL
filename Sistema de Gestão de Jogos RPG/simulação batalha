@@ -1,0 +1,59 @@
+package org.example;
+
+import java.util.Scanner;
+
+public class Simulação_de_Batalha {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Criar personagens
+        Guerreiro guerreiro = new Guerreiro("Thor", 5, 112, 50, 15, 10, 5);
+        Mago mago = new Mago("Frieren", 5, 93, 80, 10, 80, 500);
+        Arqueiro arqueiro = new Arqueiro("Oliver Queen", 5, 90, 38, 12, 20, 15);
+
+        // Exibir status inicial
+        System.out.println("Status Inicial:");
+        guerreiro.exibirStatus();
+        mago.exibirStatus();
+        arqueiro.exibirStatus();
+
+        System.out.println("\nA batalha começa!");
+
+        // Simulação de uma batalha com turnos
+        while (guerreiro.estaVivo() && mago.estaVivo() && arqueiro.estaVivo()) {
+            System.out.println("\nTurno do Guerreiro:");
+            guerreiro.atacar(mago);
+
+            if (!mago.estaVivo()) break;
+
+            System.out.println("\nTurno do Mago:");
+            mago.lancarMagia(arqueiro);
+
+            if (!arqueiro.estaVivo()) break;
+
+            System.out.println("\nTurno do Arqueiro:");
+            arqueiro.atirarFlecha(guerreiro);
+
+            if (!guerreiro.estaVivo()) break;
+
+            // Exibir status após cada turno
+            System.out.println("\nStatus Atual:");
+            guerreiro.exibirStatus();
+            mago.exibirStatus();
+            arqueiro.exibirStatus();
+        }
+
+        // Exibir o vencedor
+        System.out.println("\nFim da batalha!");
+        if (!guerreiro.estaVivo()) {
+            System.out.println("O guerreiro foi derrotado!");
+        }
+        if (!mago.estaVivo()) {
+            System.out.println("O mago foi derrotado!");
+        }
+        if (!arqueiro.estaVivo()) {
+            System.out.println("O arqueiro foi derrotado!");
+        }
+
+    }
+}

@@ -1,0 +1,18 @@
+package org.example;
+
+import org.junit.jupiter.api.Test;
+
+public class Test_Pontos {
+    @Test
+    public void test() {
+        Pontuacao ponto1 = new Pontuacao("Adm", 0);
+        System.out.println("Pontuação inicial: " + ponto1.getPontuacao());
+        ponto1.adicionarPontos(10);
+        System.out.println("1ª Pontuação: " + ponto1.getPontuacao());
+        ponto1.removerPontos(10);
+        System.out.println("2° Pontuação: " + ponto1.getPontuacao());
+        ponto1.removerPontos(10);
+        System.out.println("3ª Pontuação: " + ponto1.getPontuacao());
+        System.out.println("Pontuação final: " + ponto1.getPontuacao());
+    }
+}

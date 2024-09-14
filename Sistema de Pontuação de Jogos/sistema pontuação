@@ -1,0 +1,33 @@
+package org.example;
+
+class Pontuacao {
+    private String jogador;
+    private int pontos;
+
+    public Pontuacao(String jogador, int pontos) {
+        this.jogador = jogador;
+        this.pontos = pontos;
+    }
+
+    // Método para adicionar pontos
+    public void adicionarPontos(int valor) {
+        this.pontos += valor;
+    }
+
+    // Método para remover pontos
+    public void removerPontos(int valor) {
+        if (valor <= pontos) {
+            this.pontos -= valor;
+        } else {
+            System.out.println("Kabô os Pontos");
+        }
+    }
+
+    public String getJogador() {
+        return jogador;
+    }
+
+    public int getPontuacao() {
+        return pontos;
+    }
+}

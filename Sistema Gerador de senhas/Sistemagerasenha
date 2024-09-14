@@ -1,0 +1,52 @@
+package org.example;
+import java.util.Scanner;
+import java.util.Random;
+
+public class GeradorDeSenhas {
+    public static class GeradorSequenciaAleatoria {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            // Passo 1: Obter o tamanho da sequência
+            System.out.print("Digite o tamanho desejado da sequência: ");
+            int tamanho = scanner.nextInt();
+
+            // Passo 2: Selecionar os tipos de caracteres
+            System.out.println("Selecione os tipos de caracteres (digite 'S' para sim ou 'N' para não):");
+            System.out.print("Incluir letras minúsculas? (S/N): ");
+            boolean incluirMinusculas = scanner.next().equalsIgnoreCase("S");
+            System.out.print("Incluir letras maiúsculas? (S/N): ");
+            boolean incluirMaiusculas = scanner.next().equalsIgnoreCase("S");
+            System.out.print("Incluir números? (S/N): ");
+            boolean incluirNumeros = scanner.next().equalsIgnoreCase("S");
+            System.out.print("Incluir símbolos especiais? (S/N): ");
+            boolean incluirSimbolos = scanner.next().equalsIgnoreCase("S");
+
+            // Passo 3: Gerar a sequência aleatória
+            String caracteres = "";
+            if (incluirMinusculas) caracteres += "abcdefghijklmnopqrstuvwxyz";
+            if (incluirMaiusculas) caracteres += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (incluirNumeros) caracteres += "0123456789";
+            if (incluirSimbolos) caracteres += " !@#$%^&*()-_=+[]{}|;:',.<>?/";
+
+            Random random = new Random();
+            StringBuilder resultado = new StringBuilder();
+            for (int i = 0; i < tamanho; i++) {
+                int indiceAleatorio = random.nextInt(caracteres.length());
+                char caractereAleatorio = caracteres.charAt(indiceAleatorio);
+                resultado.append(caractereAleatorio);
+            }
+
+            String sequenciaAleatoria = resultado.toString();
+            System.out.println("Sequência aleatória gerada: " + sequenciaAleatoria);
+
+            // Passo 4: Validar a escolha do usuário
+            if (caracteres.isEmpty()) {
+                System.out.println("Você deve selecionar pelo menos um tipo de caractere.");
+            }
+
+            scanner.close();
+        }
+    }
+
+}
