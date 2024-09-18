@@ -1,0 +1,129 @@
+package org.example;
+// Classe abstrata Transporte
+abstract class Transporte {
+    protected String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    // Método abstrato para definir o comportamento de transporte
+    public abstract void transportar(Paciente paciente);
+}
+
+// Transporte de Urgência
+class TransporteUrgencia extends Transporte {
+    public TransporteUrgencia() {
+        this.tipo = "Transporte de Urgência";
+    }
+
+    @Override
+    public void transportar(Paciente paciente) {
+        System.out.println("Transportando " + paciente.getNome() + " com urgência.");
+    }
+}
+
+// Transporte de Rotina
+class TransporteRotina extends Transporte {
+    public TransporteRotina() {
+        this.tipo = "Transporte de Rotina";
+    }
+
+    @Override
+    public void transportar(Paciente paciente) {
+        System.out.println("Transportando " + paciente.getNome() + " para exames ou consultas.");
+    }
+}
+
+// Transporte de Isolamento
+class TransporteIsolamento extends Transporte {
+    public TransporteIsolamento() {
+        this.tipo = "Transporte de Isolamento";
+    }
+
+    @Override
+    public void transportar(Paciente paciente) {
+        System.out.println("Transportando " + paciente.getNome() + " em isolamento com medidas de segurança.");
+    }
+}
+
+// Classe Paciente
+abstract class Paciente {
+    protected String nome;
+    protected String categoria;
+
+    public Paciente(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+}
+
+// Paciente Adulto
+class PacienteAdulto extends Paciente {
+    public PacienteAdulto(String nome) {
+        super(nome);
+        this.categoria = "Adulto";
+    }
+}
+
+// Paciente Infantil
+class PacienteInfantil extends Paciente {
+    public PacienteInfantil(String nome) {
+        super(nome);
+        this.categoria = "Infantil";
+    }
+}
+
+// Paciente Infectado
+class PacienteInfectado extends Paciente {
+    public PacienteInfectado(String nome) {
+        super(nome);
+        this.categoria = "Infectado";
+    }
+}
+
+// Classe Sistema de Transporte
+class SistemaTransporte {
+    public void agendarTransporte(Paciente paciente, Transporte transporte) {
+        // Regras de negócio
+        if (paciente instanceof PacienteInfectado && !(transporte instanceof TransporteIsolamento)) {
+            System.out.println("Erro: Paciente infectado deve ser transportado em transporte de isolamento.");
+        } else if (paciente instanceof PacienteInfantil && !(transporte instanceof TransporteUrgencia)) {
+            System.out.println("Erro: Paciente infantil só pode ser transportado com transporte de urgência.");
+        } else {
+            transporte.transportar(paciente);
+        }
+    }
+}
+
+// Classe Principal
+public class SistemaHospital {
+    public static void main(String[] args) {
+        // Instancia pacientes
+        Paciente adulto = new PacienteAdulto("João");
+        Paciente infantil = new PacienteInfantil("Maria");
+        Paciente infectado = new PacienteInfectado("Carlos");
+
+        // Instancia transportes
+        Transporte urgencia = new TransporteUrgencia();
+        Transporte rotina = new TransporteRotina();
+        Transporte isolamento = new TransporteIsolamento();
+
+        // Sistema de Transporte
+        SistemaTransporte sistema = new SistemaTransporte();
+
+        // Teste de agendamentos
+        sistema.agendarTransporte(adulto, rotina);         // Deve funcionar
+        sistema.agendarTransporte(infantil, urgencia);     // Deve funcionar
+        sistema.agendarTransporte(infectado, isolamento);  // Deve funcionar
+        sistema.agendarTransporte(infectado, rotina);      // Deve gerar erro
+        sistema.agendarTransporte(infantil, rotina);       // Deve gerar erro
+    }
+}
