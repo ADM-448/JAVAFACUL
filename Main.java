@@ -1,25 +1,36 @@
 package org.example;
+
 public class Main {
     public static void main(String[] args) {
-        Calendario calendario = new Calendario();
+        // Testando ContaCorrente
+        ContaCorrente cc = new ContaCorrente("12345", "João", 1000, 500);
+        cc.exibirInformacoes();
+        cc.sacar(1200);
+        cc.exibirInformacoes();
 
-        // Criando e agendando um workshop
-        Workshop workshop = new Workshop("Workshop Java", "Sala 1", "2024-10-10", true, 25);
-        System.out.println(workshop.inscreverParticipante(25));
-        System.out.println(calendario.agendarEvento(workshop));
+        // Testando ContaPoupanca
+        ContaPoupanca cp = new ContaPoupanca("67890", "Maria", 2000);
+        cp.exibirInformacoes();
+        cp.sacar(2500);
+        cp.exibirInformacoes();
 
-        // Criando e agendando uma reunião privada
-        Reuniao reuniaoPrivada = new Reuniao("Reunião de Projeto", "Sala 2", "2024-09-20", false);
-        System.out.println(reuniaoPrivada.definirSenha("1234"));
-        System.out.println(calendario.agendarEvento(reuniaoPrivada));
+        // Testando ContaInvestimento
+        ContaInvestimento ci = new ContaInvestimento("54321", "Carlos", 3000);
+        ci.exibirInformacoes();
+        ci.sacar(1000);
+        ci.exibirInformacoes();
 
-        // Criando e agendando um evento corporativo
-        EventoCorporativo eventoCorporativo = new EventoCorporativo("Conferência Anual", "Auditório", "2024-11-05", true, "Sala de Conferências");
-        System.out.println(eventoCorporativo.reservarAmbiente());
-        System.out.println(calendario.agendarEvento(eventoCorporativo));
+        // Testando ContaSalario
+        ContaSalario cs = new ContaSalario("98765", "Ana", 1500, 300);
+        cs.exibirInformacoes();
+        cs.sacar(500);
+        cs.sacar(500);
+        cs.exibirInformacoes();
 
-        // Listando todos os eventos agendados
-        System.out.println("\nLista de eventos agendados:");
-        calendario.listarEventos();
+        // Testando ContaInvestimentoAltoRisco
+        ContaInvestimentoAltoRisco ciar = new ContaInvestimentoAltoRisco("11223", "Pedro", 15000);
+        ciar.exibirInformacoes();
+        ciar.sacar(5000);
+        ciar.exibirInformacoes();
     }
 }
